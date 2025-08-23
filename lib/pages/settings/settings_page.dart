@@ -198,16 +198,32 @@ class _SettingsPageState extends State<SettingsPage>
             ),
           ),
           DropDownMenuItem(
-            icon: Icons.add_circle_outline_outlined,
-            title: '关注类型',
-            boxKey: SettingsBoxKey.followType,
-            items: FollowType.values
-                .map((type) => DropdownMenuItem<int>(
-                      value: FollowType.values.indexOf(type),
-                      child: Text(type.name),
-                    ))
-                .toList(),
-          ),
+  icon: Icons.add_circle_outline_outlined,
+  title: '关注类型',
+  boxKey: SettingsBoxKey.followType,
+  items: [
+    DropdownMenuItem<int>(
+      value: FollowType.values.indexOf(FollowType.ALL),
+      child: const Text('全部'),
+    ),
+    DropdownMenuItem<int>(
+      value: FollowType.values.indexOf(FollowType.USER),
+      child: const Text('用户'),
+    ),
+    DropdownMenuItem<int>(
+      value: FollowType.values.indexOf(FollowType.TOPIC),
+      child: const Text('话题'),
+    ),
+    DropdownMenuItem<int>(
+      value: FollowType.values.indexOf(FollowType.PRODUCT),
+      child: const Text('产品'),
+    ),
+    DropdownMenuItem<int>(
+      value: FollowType.values.indexOf(FollowType.APP),
+      child: const Text('应用'),
+    ),
+  ],
+)，
           /*
           DropDownMenuItem(
             icon: Icons.image_outlined,
