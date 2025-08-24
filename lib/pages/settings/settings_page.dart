@@ -43,7 +43,32 @@ extension SettingsMenuItemExtension on SettingsMenuItem {
     }
   }
 }
-
+// 在 settings_page.dart 中的某个位置（例如 State 类中）
+SwitchListTile(
+  title: Text('从最近任务中隐藏'),
+  value: _excludeFromRecents,
+  onChanged: (value) async {
+    // 保存到本地存储
+    GStorage.excludeFromRecents = value;
+    
+    // 调用 Android 功能
+    if (Platform.isAndroid) {
+      await AndroidChannel.excludeFromRecents(value);
+    }
+    
+    // 更新UI状态
+    setState(() {
+      _excludeFromRecents = value;
+    });
+    
+    // 显示提示
+    if (value) {
+      SmartDialog.showToast('已从最近任务中隐藏');
+    } else {
+      SmartDialog.showToast('已显示在最近任务中');
+    }
+  },
+),
 // 为 FollowType 添加中文显示扩展
 extension FollowTypeExtension on FollowType {
   String get displayName {
