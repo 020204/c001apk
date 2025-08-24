@@ -52,9 +52,29 @@ class MainActivity : FlutterFragmentActivity() {
                     exportData = data
                     exportData(fileName)
                 }
-            } else {
+            } else if (call.method == "excludeFromRecents") {
+                val exclude = call.argument<Boolean>("exclude") ?: false
+                setExcludeFromRecents(exclude)
+                result.success(null)
+            }else {
                 result.notImplemented()
             }
+        }
+    }
+// 设置从最近任务中隐藏
+    private fun setExcludeFromRecents(exclude: Boolean) {
+        if (exclude) {
+            // 设置 FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
+            startActivity(intent)
+            Toast.makeText(this, "已从最近任务中隐藏", Toast.LENGTH_SHORT).show()
+        } else {
+            // 清除 FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            Toast.makeText(this, "已显示在最近任务中", Toast.LENGTH_SHORT).show()
         }
     }
 
