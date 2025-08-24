@@ -478,6 +478,8 @@ class SettingsBoxKey {
       recordHistory = 'recordHistory',
       showEmoji = 'showEmoji',
       checkUpdate = 'checkUpdate',
+  // 新增：从最近任务中隐藏
+      excludeFromRecents = 'excludeFromRecents',
       checkCount = 'checkCount',
       installTime = 'installTime',
       versionName = 'versionNamev',
