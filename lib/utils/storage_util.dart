@@ -284,7 +284,16 @@ class GStorage {
   static void setCheckUpdate(bool value) {
     settings.put(SettingsBoxKey.checkUpdate, value);
   }
+// 新增：从最近任务中隐藏的 getter 和 setter
+  static bool get excludeFromRecents {
+    return settings.get(SettingsBoxKey.excludeFromRecents, defaultValue: false);
+  }
 
+  static void setexcludeFromRecents(bool value) {
+    settings.put(SettingsBoxKey.excludeFromRecents, value);
+  }
+
+  
   static String get installTime {
     return settings.get(SettingsBoxKey.installTime, defaultValue: '');
   }
