@@ -304,6 +304,17 @@ class _SettingsPageState extends State<SettingsPage>
               boxKey: SettingsBoxKey.checkUpdate,
               defaultValue: true,
             ),
+          const SwitchItem(
+  icon: Icons.visibility_off_outlined,
+  title: '从最近任务中隐藏',
+  boxKey: SettingsBoxKey.excludeFromRecents,
+  defaultValue: false,
+  onChanged: (value) {
+    if (Platform.isAndroid) {
+      AndroidChannel.excludeFromRecents(value);
+    }
+  },
+),
           // Others
           ListTile(
             title: Text(
